@@ -30,7 +30,7 @@ build() {
 	elif
 		then
 			echo -e "${green}Started building...${NC}"
-			packer-io build -force template.json > /dev/null 2>&1 && \
+			packer-io build template.json > /dev/null 2>&1 && \
 			echo -e "${green}Build successfully completed!${NC}"
 	fi
 }
@@ -60,7 +60,7 @@ upload() {
 }
 
 deploy() {
-	ssh root@os-control 'cd /var/tmp/image && gunzip -f packer-CentOS_7.raw.gz && DATE=$(date +"%H%M_%d_%m_%Y") && DATE1=$(DATE) && mv /var/tmp/image/packer-CentOS_7.raw "/var/tmp/image/packer-CentOS_7_$DATE1.raw" && source ~/openrc && glance image-create --name "CentOS 7 $DATE1" --container-format bare --disk-format qcow2 --is-public true --file packer-CentOS_7_$DATE1.raw'
+	ssh root@os-control 'cd /var/tmp/image && gunzip -f packer-CentOS_7.raw.gz && DATE=$(date +"%H%M_%d_%m_%Y") && DATE1=$(echo $DATE) && mv /var/tmp/image/packer-CentOS_7.raw "/var/tmp/image/packer-CentOS_7_$DATE1.raw" && source ~/openrc && glance image-create --name "CentOS 7 $DATE1" --container-format bare --disk-format qcow2 --is-public true --file packer-CentOS_7_$DATE1.raw'
 	#rm ./output/packer-CentOS_7.raw.gz
 }
 
