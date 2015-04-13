@@ -6,7 +6,7 @@
       "iso_checksum_type": "md5",
       "iso_url": "http://mirror.informatik.hs-fulda.de/centos6.6/isos/x86_64/CentOS-6.6-x86_64-netinstall.iso",
       "output_directory": "output",
-      "disk_size": 3072,
+      "disk_size": 2048,
       "format": "raw",
       "name": "CentOS_6",
       "accelerator": "kvm",
@@ -37,7 +37,6 @@
         "scripts/cloud-init.sh",
         "scripts/network.sh",
         "scripts/locale.sh",
-        "scripts/growpart.sh",
         "scripts/cleanup.sh"
       ]
     }

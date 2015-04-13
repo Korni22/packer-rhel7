@@ -2,9 +2,9 @@
   "builders": [
     {
       "type": "qemu",
-      "iso_checksum": "d07ab3e615c66a8b2e9a50f4852e6a77",
+      "iso_checksum": "111379a06402e1e445c6aeee9401d031",
       "iso_checksum_type": "md5",
-      "iso_url": "http://mirror.informatik.hs-fulda.de/centos7/isos/x86_64/CentOS-7-x86_64-Minimal-1503-01.iso",
+      "iso_url": "http://mirror.informatik.hs-fulda.de/pub/linux/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1503.iso",
       "output_directory": "output",
       "disk_size": 2048,
       "format": "raw",

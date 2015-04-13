@@ -22,7 +22,7 @@ sed -i 's/eth0/eth1/' /etc/sysconfig/network-scripts/ifcfg-eth1
 # passwd -d root
 
 # remove sd* specific UUIDs
-sed -i '/UUID/d' /etc/fstab
+#sed -i '/UUID/d' /etc/fstab
 
 # remove unneeded languages
 localedef --list-archive | grep -v -e "en_US" | xargs localedef --delete-from-archive
