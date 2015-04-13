@@ -1,5 +1,6 @@
 # Clean up unneeded packages.
 yum -y clean all
+#yum remove 
 
 # Ensure that udev doesn't screw us with network device naming.
 ln -sf /dev/null /lib/udev/rules.d/75-persistent-net-generator.rules
@@ -22,7 +23,7 @@ sed -i 's/eth0/eth1/' /etc/sysconfig/network-scripts/ifcfg-eth1
 # passwd -d root
 
 # remove sd* specific UUIDs
-sed -i '/UUID/d' /etc/fstab
+#sed -i '/UUID/d' /etc/fstab
 
 # remove unneeded languages
 localedef --list-archive | grep -v -e "en_US" | xargs localedef --delete-from-archive
