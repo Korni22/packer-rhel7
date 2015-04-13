@@ -1,6 +1,6 @@
 # Clean up unneeded packages.
 yum -y clean all
-#yum remove 
+yum remove -y alsa-tools-firmware linux-firmware
 
 # Ensure that udev doesn't screw us with network device naming.
 ln -sf /dev/null /lib/udev/rules.d/75-persistent-net-generator.rules
