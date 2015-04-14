@@ -37,6 +37,7 @@
         "scripts/cloud-init.sh",
         "scripts/network.sh",
         "scripts/locale.sh",
+        "scripts/networkmanager.sh",
         "scripts/cleanup.sh"
       ]
     }
