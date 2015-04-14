@@ -4,3 +4,4 @@ CentOS-6-x86_64/packer_cache
 CentOS-7-x86_64/build.log
 CentOS-7-x86_64/output
 CentOS-7-x86_64/packer_cache
+Ubuntu-14.04-x86_64/packer_cache
