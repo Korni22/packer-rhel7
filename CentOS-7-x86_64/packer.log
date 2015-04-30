@@ -470,8 +470,3 @@ Build 'CentOS_7' finished.
 
 ==> Builds finished. The artifacts of successful builds are:
 --> CentOS_7: VM files in directory: output
-[1;32mCentOS_7 output will be in this color.[0m
-
-1 error(s) occurred:
-
-* Output directory 'output' already exists. It must not exist.

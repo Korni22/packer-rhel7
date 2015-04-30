@@ -19,8 +19,8 @@ echo "Available arguments:"
 echo -e "- \"build\" starts a new build using packer-io${NC}"
 echo -e "- \"pack\" the output image gets packed using pigz${NC}"
 echo -e "- \"upload\" uploads the image${NC}"
-echo -e "- \"complete\" builds, packs, uploads the image and deploys it${NC}"
 echo -e "- \"deploy\" deploys the image in the environment${NC}"
+echo -e "- \"complete\" builds, packs, uploads the image and deploys it${NC}"
 }
 
 build() {
