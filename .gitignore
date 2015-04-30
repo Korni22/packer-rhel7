@@ -6,5 +6,5 @@ CentOS-7-x86_64/output
 CentOS-7-x86_64/packer_cache
 Ubuntu-14.04-x86_64/packer_cache
 Ubuntu-14.04-x86_64/output
-CentOS-7-x86_64/packer.log
+*.log
 Ubuntu-14.04-x86_64/packer.log
