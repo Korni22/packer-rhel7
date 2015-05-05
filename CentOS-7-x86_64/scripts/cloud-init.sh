@@ -3,5 +3,6 @@
 #yum install -y cloud-init cloud-utils-growpart cloud-utils
 
 sed -i 's/.*PermitRootLogin no/PermitRootLogin yes/' /etc/ssh/sshd_config
+sed -i 's|[#]*PasswordAuthentication yes|PasswordAuthentication no|g' /etc/ssh/sshd_config
 
 #sed -i 's/disable_root: 1/disable_root: 0/' /etc/cloud/cloud.cfg

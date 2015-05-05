@@ -6,14 +6,14 @@
             "iso_checksum_type": "md5",
             "iso_url": "http://de.releases.ubuntu.com/14.04/ubuntu-14.04.2-server-amd64.iso",
             "output_directory": "output",
-            "disk_size": 3072,
+            "disk_size": 4096,
             "format": "raw",
             "name": "Ubuntu_14-04",
             "accelerator": "kvm",
             "headless": false,
             "http_directory": "http",
             "boot_wait": "3s",
-            "ssh_username": "root",
+            "ssh_username": "packer",
             "ssh_password": "packer",
             "ssh_port": 22,
             "ssh_wait_timeout": "10000s",
@@ -54,11 +54,7 @@
         {
             "type": "shell",
             "scripts": [
-                "scripts/bootlogs.sh",
                 "scripts/cloud-init.sh",
-                "scripts/network.sh",
-                "scripts/locale.sh",
-                "scripts/networkmanager.sh",
                 "scripts/cleanup.sh"
             ]
         }
