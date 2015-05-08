@@ -8,7 +8,7 @@
     "output_directory": "output",
     "disk_size": 2048,
     "format": "raw",
-    "name": "CentOS_7",
+    "name": "centos",
     "accelerator": "kvm",
     "headless": true,
     "http_directory": "http",

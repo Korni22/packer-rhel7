@@ -91,12 +91,12 @@ deploy() {
 				exit
 			fi
 	ssh root@os-control 'cd /var/tmp/image && \
-	gunzip -f packer-CentOS_7.raw.gz && \
+	gunzip -f packer-$dist.gz && \
 	DATE=$(date +"%H%M_%d_%m_%Y") && \
 	DATE1=$(echo $DATE) && \
-	mv /var/tmp/image/packer-CentOS_7.raw "/var/tmp/image/packer-CentOS_7.raw_$DATE1.raw" && \
+	mv /var/tmp/image/packer-$dist.raw "/var/tmp/image/packer-$dist.raw_$DATE1.raw" && \
 	source ~/openrc && \
-	glance image-create --name "CentOS 7 $DATE1" --container-format bare --disk-format raw --is-public true --file packer-CentOS_7_$DATE1.raw'
+	glance image-create --name "$dist $DATE1" --container-format bare --disk-format raw --is-public true --file packer-$dist_$DATE1.raw'
 }
 
 complete() {
