@@ -8,7 +8,7 @@
         "output_directory": "output",
         "disk_size": 4096,
         "format": "raw",
-        "name": "ubuntu_15-04",
+        "name": "ubuntu-15.04",
         "accelerator": "kvm",
         "headless": false,
         "http_directory": "http",
@@ -38,7 +38,7 @@
         " netcfg/get_hostname=packer-build",
         " netcfg/get_domain=packer.local",
         " noapic",
-        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu_15.04.cfg",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu-15.04.cfg",
         " -- ",
         "<enter><wait>"
         ],
