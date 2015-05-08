@@ -10,7 +10,7 @@
     "format": "raw",
     "name": "CentOS_7",
     "accelerator": "kvm",
-    "headless": false,
+    "headless": true,
     "http_directory": "http",
     "boot_wait": "5s",
     "ssh_username": "root",
