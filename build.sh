@@ -114,7 +114,7 @@ elif [[ $1 = "ubuntu-14.04" ]]
 		dist=ubuntu-14.04
 elif [[ $1 = "ubuntu-15.04" ]]
 	then
-		echo -e "${yellow}Work in progress!${NC}"
+		dist=ubuntu-15.04	
 elif [[ -n "$1" ]]
 	then
 		echo -e "${yellow}At the moment, only \"centos\", \"ubuntu-14.04\" and \"ubuntu-15.04\" are available :(${NC}"
