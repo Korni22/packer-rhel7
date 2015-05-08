@@ -6,5 +6,5 @@ Currently, only Scripts for CentOS 7 are considered stable, 6 is WIP, other Linu
 `zsh build.sh $dist $task`
 
 Current options are:
-$dist = centos, ubuntu-14.04, ubuntu-15.04
-$task = build, pack, upload, deploy, complete
+</br>$dist = centos, ubuntu-14.04, ubuntu-15.04
+</br>$task = build, pack, upload, deploy, complete
