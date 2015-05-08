@@ -2,9 +2,9 @@
     "builders": [
     {
         "type": "qemu",
-        "iso_checksum": "487f4a81f22f8597503db3d51a1b502e",
+        "iso_checksum": "83aabd8dcf1e8f469f3c72fff2375195",
         "iso_checksum_type": "md5",
-        "iso_url": "http://de.releases.ubuntu.com/15.04/ubuntu-15.04-server-amd64.iso",
+        "iso_url": "http://de.releases.ubuntu.com/14.04.2/ubuntu-14.04.2-server-amd64.iso",
         "output_directory": "output",
         "disk_size": 4096,
         "format": "raw",
