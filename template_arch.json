@@ -33,7 +33,7 @@
   {
     "type": "shell",
     "scripts": [
-    "scripts/bootlogs_centos.sh"
+    "scripts/arch_install.sh"
     ]
   }
   ]
