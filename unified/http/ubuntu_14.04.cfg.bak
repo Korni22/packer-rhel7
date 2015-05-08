@@ -19,7 +19,11 @@ d-i pkgsel/update-policy select none
 d-i pkgsel/updatedb boolean true
 d-i tasksel/first select OpenSSH server
 d-i pkgsel/include string openssh-server
+#d-i pkgsel/include string curl
+#d-i pkgsel/upgrade select full-upgrade
+#d-i partman-auto/disk string /dev/vda
 d-i partman-auto/method string regular
+#d-i partman-auto/choose_recipe select atomic
 d-i partman-basicfilesystems/no_swap boolean false
 d-i partman-auto/expert_recipe string root :: 500 10000 20000 ext4 $primary{ } $bootable{ } method{ format } format{ } use_filesystem{ } label{ cloudimg-rootfs } filesystem{ ext4 } mountpoint{ / } .
 d-i partman/mount_style select label
@@ -32,6 +36,11 @@ d-i passwd/make-user boolean false
 d-i passwd/root-password password packer
 d-i passwd/root-password-again password packer
 d-i passwd/root-login boolean true
+#d-i user-setup/encrypt-home boolean false
+#d-i passwd/username string ubuntu
+#d-i passwd/user-fullname string ubuntu
+#d-i passwd/user-password-crypted password NP
+#d-i passwd/user-password-again password Quain2ae
 d-i user-setup/allow-password-weak boolean true
 d-i grub-installer/only_debian boolean true
 d-i grub-installer/with_other_os boolean true
@@ -41,4 +50,6 @@ d-i preseed/late_command string rm -f /target/etc/apt/apt.conf;\
  in-target mkdir -p /root/.ssh; \
  echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDKtBC1iJbOWy6PIuvpQWX3T3ktAcDLNgpxJeMHOXAd8Sfxru4R1aPmX/BAFYclPaK5HowYF/6mDt2g/1/gTPsWqDOo1Iqsf0Xx3Htf4lsTG0aD9o7x3skJqbIDSx1yDtm/zUADqCcC5QviLkT7JdWwPgf3mLlAt50NFJ2VxMIUnkLeSuOXLlhrbsw4YKlZm2B8zTXUnzL+tUpEof+yx9+/qqmF3ZMJWxFz/cW+JWiU0A16sK40oAlWIlrUj85Hm8NZyhozM2AKlDYdM8eRMD0YsELUPchn4wsqJSE2TP8axx0pBE/2Cpc/FtwuIr31wDDq9xDUlQj8XaVfLQhBCm4Bl7TrjyrnkhjTcbWPv84EqjNE6ornrbKQZ4JaaG2Tvt2lE8DA39pzj/dj/iQLuQxE2PZy800T/KScwHXrSXEejOZoeyXFVnpX9o4fkZsKW+opogdrCYfSN7WLYPy2NXABA5VXnKFtAdDihzJwNOUR3kkxalPVbWIbM8VjWnPWINsZGev6J8LyqtKFYU3c3m7mok/oAEqmyCsbM4ay9jHYVFxfdHftlAlGxfFWk/9OAdzaqMf/ZjMcLEi10cLcKeKy+HZ9ypT6F/EbVI1VMsGSzwCnv6NlhXGfYjM6tf6S1rzxHC9/uX1BycKK2BFs9N6LuGCg+NJXQdHBCF7LW+wx+w== korni22@hal9000" > /target/root/.ssh/authorized_keys; \
  echo -e 'GRUB_TIMEOUT=1\nGRUB_DEFAULT=0\nGRUB_TERMINAL="serial console"\nGRUB_CMDLINE_LINUX="console=ttyS0,115200 console=tty0"' > /target/etc/default/grub;\
- in-target grub-mkconfig -o /boot/grub/grub.cfg
+ in-target grub-mkconfig -o /boot/grub/grub.cfg;\
+ echo -e 'LABEL=cloudimg-rootfs\t/\text4\tdefaults\t0\t0' > /target/etc/fstab;\
+ in-target apt-get -y purge ufw kbd

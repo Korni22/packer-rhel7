@@ -41,7 +41,7 @@ build() {
 
 			fi
 			echo -e "${green}Started building...${NC}"
-			packer-io build template_$dist.json && \
+			packer-io build -force template_$dist.json && \
 			echo -e "${green}Build successfully completed!${NC}"
 	elif 
 		then
@@ -120,7 +120,7 @@ elif [[ -n "$1" ]]
 		echo -e "${yellow}At the moment, only \"centos\", \"ubuntu-14.04\" and \"ubuntu-15.04\" are available :(${NC}"
 elif [[ -z "$1" ]]
 	then
-		echo -e "${yellow}Ugh, which distribution do you want!?${NC}"
+		echo -e "${yellow}I'm sorry, you seem to have forgotten to pick a distribution!${NC}"
 fi
 
 if [[ $2 = "help" ]]
