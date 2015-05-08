@@ -8,7 +8,7 @@
     "output_directory": "output_arch",
     "disk_size": 2048,
     "format": "raw",
-    "name": "centos",
+    "name": "arch",
     "accelerator": "kvm",
     "headless": false,
     "http_directory": "http",
@@ -19,7 +19,7 @@
     "ssh_wait_timeout": "10000s",
     "shutdown_command": "shutdown -h now",
     "boot_command": [
-    "<enter><pageDown><pageDown><pageDown><pageDown><pageDown><pageDown><pageDown><pageDown><enter>"
+    "<enter><pageDown><pageDown><pageDown><pageDown><pageDown><pageDown><pageDown><pageDown><pageDown><enter>"
     ],
     "qemuargs": [
     [
