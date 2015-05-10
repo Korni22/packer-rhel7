@@ -15,6 +15,8 @@ yellow='\033[1;33m'
 NC='\033[0m' # No Color
 
 dist=""
+image=""
+dist_glance=""
 
 help () {
 echo "Available arguments:"
@@ -23,80 +25,83 @@ echo -e "- \"pack\" the output image gets packed using pigz${NC}"
 echo -e "- \"upload\" uploads the image${NC}"
 echo -e "- \"deploy\" deploys the image in the environment${NC}"
 echo -e "- \"complete\" builds, packs, uploads the image and deploys it${NC}"
+exit 1
 }
 
-build() {
-	if [ -f "./output/packer-$dist.raw.gz" ]
+nodist () {
+	if [ -z $dist ]
 		then
-			if [ -z "$dist" ]
-				then
-				exit
-			fi
-			echo -e "${yellow}Image already exists!${NC}"
-	elif
-		then
-			if [ -z "$dist" ]
-				then
-				exit
-
-			fi
-			echo -e "${green}Started building...${NC}"
-			packer-io build -force template_$dist.json && \
-			echo -e "${green}Build successfully completed!${NC}"
-	elif 
-		then
-		echo -e "${yellow}Ugh, wtf are you trying to pull here!?${NC}"
+			echo -e "${yellow}Please pick a distribution!${NC}"
+			exit 1
 	fi
 }
 
-pack() {
-	if [ -f ./output/packer-$dist.raw ]
+wrongdist () {
+	echo -e "${yellow}I'm sorry, you seem to have forgotten to pick a distribution!${NC}"
+	exit 1
+}
+
+noimage () {
+	if [ -z $image ]
 		then
-			if [ -z "$dist" ]
-				then
-				exit
-			fi
-			echo -e "${green}started packing...${NC}" && \
-			pv -tpreb output/packer-$dist | pigz > output/packer-$dist.gz && \
-			rm output/packer-$dist
-			echo -e "${green}Image successfully compressed${NC}"
-			echo -e "${NC}Filesize: $(ls -lrth output | awk 'NR==1{print$2}')"
-	elif [ -f ./output/packer-$dist.gz ]
+			echo -e "${yellow}No image found!${NC}"
+			echo -e "${yellow}Please build one first${NC}"
+			exit 1
+	fi
+}
+
+build () {
+	packer-io build -force template_$dist.json
+}
+
+pack(){
+	image=`ls -Art output_$dist/ | tail -n1`
+	if [[ $image =~ \.raw$ ]]
+		then	
+			echo -e "${green}started packing...${NC}"
+			pv -tpreb output_$dist/$image | pigz > output_$dist/$image.gz && \
+			echo -e "${green}Image successfully compressed!${NC}" && \
+			rm output_$dist/$image && \
+			echo -e "${NC}Filesize: $(ls -lrth output_$dist | awk 'NR==1{print$2}')"
+	elif [[ $image =~ \.gz$ ]]
 		then
-			if [ -z "$dist" ]
-				then
-				exit
-			fi
 			echo -e "${yellow}Image is already packed!${NC}"
-			echo -e "${NC}Filesize: $(ls -lrth output | awk 'NR==1{print$2}')"
+			echo -e "${NC}Filesize: $(ls -lrth output_$dist | awk 'NR==1{print$2}')"
 	fi
 }
 
-upload() {
-	if [ -f ./output/packer-$dist.gz ]
+upload(){
+	image=`ls -Art output_$dist/ | tail -n1`
+	if [[ $image =~ \.raw$ ]]
+		then	
+			echo -e "${yellow}You happen to have forgotten to pack the image first!${NC}"
+	elif [[ $image =~ \.gz$ ]]
 		then
-			if [ -z "$dist" ]
-				then
-				exit
-			fi
 			echo -e "${green}uploading started...${NC}" && \
-			lftp -c "open -u root sftp://localhost:2222; put -O /var/tmp/image output/packer-$dist.gz" && \
+			lftp -c "open -u root sftp://localhost:2222; put -O /var/tmp/image output_$dist/$image" && \
 			echo -e "${green}upload finished!${NC}"
 	fi
 }
 
 deploy() {
-	if [ -z "$dist" ]
-				then
-				exit
-			fi
+	if [[ $dist == "centos" ]]
+		then
+			dist_glance="CentOS 7"
+	elif [[ $dist == "ubuntu-14.04" ]]
+		then
+			dist_glance="Ubuntu 14.04"
+	elif [[ $dist == "ubuntu-15.04" ]]
+		then
+			dist_glance="Ubuntu 15.04"
+	fi
 	ssh root@os-control 'cd /var/tmp/image && \
-	gunzip -f packer-$dist.gz && \
-	DATE=$(date +"%H%M_%d_%m_%Y") && \
-	DATE1=$(echo $DATE) && \
-	mv /var/tmp/image/packer-$dist.raw "/var/tmp/image/packer-$dist.raw_$DATE1.raw" && \
+	image=`ls -Art | grep packer | tail -n1`
+	date=`echo $image | grep -oP '\d\d\d\d\D\d\d\D\d\d'`
+	gunzip -f $image && \
 	source ~/openrc && \
-	glance image-create --name "$dist $DATE1" --container-format bare --disk-format raw --is-public true --file packer-$dist_$DATE1.raw'
+	image=`ls -Art | grep packer | tail -n1`
+	glance image-create --name "$dist_glance $date" --container-format bare --disk-format raw --is-public true --file $image && \
+	rm $image'
 }
 
 complete() {
@@ -106,27 +111,39 @@ complete() {
 	deploy && \
 }
 
-if [[ $1 = "centos" ]]
+if [[ $1 == "centos" ]]
 	then
-		dist=centos
-elif [[ $1 = "ubuntu-14.04" ]]
+		dist="centos"
+elif [[ $1 == "ubuntu-14.04" ]]
 	then
-		dist=ubuntu-14.04
-elif [[ $1 = "ubuntu-15.04" ]]
+		dist="ubuntu-14.04"
+elif [[ $1 == "ubuntu-15.04" ]]
 	then
-		dist=ubuntu-15.04	
+		dist="ubuntu-15.04"
+elif [[ $1 == "build" ]]
+	then
+		wrongdist
+elif [[ $1 == "pack" ]]
+	then
+		wrongdist
+elif [[ $1 == "upload" ]]
+	then
+		wrongdist
+elif [[ $1 == "deploy" ]]
+	then
+		wrongdist
+elif [[ $1 == "complete" ]]
+	then
+		wrongdist
 elif [[ -n "$1" ]]
 	then
-		echo -e "${yellow}At the moment, only \"centos\", \"ubuntu-14.04\" and \"ubuntu-15.04\" are available :(${NC}"
-elif [[ -z "$1" ]]
+		help
+elif [[ -z "$1" ]] 
 	then
-		echo -e "${yellow}I'm sorry, you seem to have forgotten to pick a distribution!${NC}"
+		help
 fi
 
-if [[ $2 = "help" ]]
-	then
-    	help
-elif [[ $2 == "build" ]]
+if [[ $2 == "build" ]]
 	then
     	build
 elif [[ $2 == "upload" ]]
