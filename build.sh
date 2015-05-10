@@ -95,13 +95,13 @@ deploy() {
 			dist_glance="Ubuntu 15.04"
 	fi
 	image=`ls -Art output_$dist | grep packer | tail -n1`
-	echo $image
 	image2=$(echo "${image:0:${#image}-3}")
-	echo $image2
 	date=`echo $image | grep -oP '\d{8}'`
-	echo $date
 	ssh root@os-control "cd /var/tmp/image
-	gunzip $image
+	echo -e \"${green}Deployment started!${NC}\"
+	echo -e \"${green}Unpacking...${NC}\"
+	gunzip $image && \
+	echo -e \"${green}Unpacking finished!${NC}\"
 	source ~/openrc
 	glance image-create --name \"$dist_glance $date\" --container-format bare --disk-format raw --is-public true --file $image2 && \
 	rm $image2"
