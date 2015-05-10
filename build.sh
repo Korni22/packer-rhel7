@@ -96,7 +96,7 @@ deploy() {
 	fi
 	ssh root@os-control 'cd /var/tmp/image && \
 	image=`ls -Art | grep packer | tail -n1`
-	date=`echo $image | grep -oP '\d\d\d\d\D\d\d\D\d\d'`
+	date=`echo $image | grep -oP '\d{8}'`
 	gunzip -f $image && \
 	source ~/openrc && \
 	image=`ls -Art | grep packer | tail -n1`
