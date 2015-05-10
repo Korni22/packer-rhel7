@@ -28,7 +28,7 @@ echo -e "- \"complete\" builds, packs, uploads the image and deploys it${NC}"
 exit 1
 }
 
-nodist () {
+nodist(){
 	if [ -z $dist ]
 		then
 			echo -e "${yellow}Please pick a distribution!${NC}"
@@ -36,12 +36,12 @@ nodist () {
 	fi
 }
 
-wrongdist () {
+wrongdist(){
 	echo -e "${yellow}I'm sorry, you seem to have forgotten to pick a distribution!${NC}"
 	exit 1
 }
 
-noimage () {
+noimage(){
 	if [ -z $image ]
 		then
 			echo -e "${yellow}No image found!${NC}"
@@ -50,7 +50,7 @@ noimage () {
 	fi
 }
 
-build () {
+build(){
 	packer-io build -force template_$dist.json
 }
 
@@ -94,14 +94,17 @@ deploy() {
 		then
 			dist_glance="Ubuntu 15.04"
 	fi
-	ssh root@os-control 'cd /var/tmp/image && \
-	image=`ls -Art | grep packer | tail -n1`
+	image=`ls -Art output_$dist | grep packer | tail -n1`
+	echo $image
+	image2=$(echo "${image:0:${#image}-3}")
+	echo $image2
 	date=`echo $image | grep -oP '\d{8}'`
-	gunzip -f $image && \
-	source ~/openrc && \
-	image=`ls -Art | grep packer | tail -n1`
-	glance image-create --name "$dist_glance $date" --container-format bare --disk-format raw --is-public true --file $image && \
-	rm $image'
+	echo $date
+	ssh root@os-control "cd /var/tmp/image
+	gunzip $image
+	source ~/openrc
+	glance image-create --name \"$dist_glance $date\" --container-format bare --disk-format raw --is-public true --file $image2 && \
+	rm $image2"
 }
 
 complete() {
