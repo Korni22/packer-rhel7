@@ -8,7 +8,7 @@
     "output_directory": "output_centos",
     "disk_size": 2048,
     "format": "raw",
-    "name": "centos_{{isotime \"2006-01-02\"}}",
+    "name": "centos_{{isotime \"20060102\"}}",
     "accelerator": "kvm",
     "headless": false,
     "http_directory": "http",
