@@ -8,7 +8,7 @@
         "output_directory": "output_ubuntu-14.04",
         "disk_size": 4096,
         "format": "raw",
-        "name": "ubuntu-14.04_{{isotime \"2006-01-02\"}}",
+        "name": "ubuntu-14.04_{{isotime \"20060102\"}}",
         "accelerator": "kvm",
         "headless": false,
         "http_directory": "http",
