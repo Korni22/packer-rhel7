@@ -116,6 +116,11 @@ complete() {
 	deploy
 }
 
+test(){
+	echo "This is just a test for Travis CI."
+	exit 0
+}
+
 if [[ $1 == "centos" ]]
 	then
 		dist="centos"
