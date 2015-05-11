@@ -113,7 +113,7 @@ complete() {
 	build && \
 	pack && \
 	upload && \
-	deploy && \
+	deploy
 }
 
 if [[ $1 == "centos" ]]
