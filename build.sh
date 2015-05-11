@@ -18,14 +18,14 @@ dist=""
 image=""
 dist_glance=""
 
-help () {
-echo "Available arguments:"
-echo -e "- \"build\" starts a new build using packer-io${NC}"
-echo -e "- \"pack\" the output image gets packed using pigz${NC}"
-echo -e "- \"upload\" uploads the image${NC}"
-echo -e "- \"deploy\" deploys the image in the environment${NC}"
-echo -e "- \"complete\" builds, packs, uploads the image and deploys it${NC}"
-exit 1
+help(){
+	echo "Available arguments:"
+	echo -e "- \"build\" starts a new build using packer-io${NC}"
+	echo -e "- \"pack\" the output image gets packed using pigz${NC}"
+	echo -e "- \"upload\" uploads the image${NC}"
+	echo -e "- \"deploy\" deploys the image in the environment${NC}"
+	echo -e "- \"complete\" builds, packs, uploads the image and deploys it${NC}"
+	exit 1
 }
 
 nodist(){
@@ -51,7 +51,9 @@ noimage(){
 }
 
 build(){
-	packer-io build -force template_$dist.json
+	echo -e "${yellow}Started building...${NC}"
+	packer-io build -force template_$dist.json && \
+	echo -e "${yellow}Building finished!${NC}"
 }
 
 pack(){
@@ -111,7 +113,7 @@ complete() {
 	build && \
 	pack && \
 	upload && \
-	deploy && \
+	deploy
 }
 
 if [[ $1 == "centos" ]]
