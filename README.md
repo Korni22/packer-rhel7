@@ -1,3 +1,5 @@
+![https://travis-ci.org/Korni22/packer-linux.svg?branch=travis](Travis CI build status)
+
 These are scripts that can be used to automatically create images for an OpenStack Environment.
 
 Currently, only Scripts for CentOS 7 are considered stable, 6 is WIP, other Linux distributions will be added later.
