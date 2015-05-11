@@ -145,6 +145,9 @@ elif [[ $1 == "deploy" ]]
 elif [[ $1 == "complete" ]]
 	then
 		wrongdist
+elif [[ $1 == "test" ]]
+	then
+		test
 elif [[ -n "$1" ]]
 	then
 		help
@@ -164,12 +167,13 @@ elif [[ $2 == "pack" ]]
 		pack
 elif [[ $2 == "complete" ]]
 	then
-		#echo -e "${red}Todo!${NC}"
 		complete
 elif [[ $2 == "deploy" ]]
 	then
 		deploy
-		#echo -e "${red}Todo!${NC}"
+elif [[ $2 == "test" ]]
+	then
+		test
 elif [[ -n "$2" ]]
 	then
 		echo -e "${red}Invalid argument!${NC}"
