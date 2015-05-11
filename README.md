@@ -1,4 +1,4 @@
-![https://travis-ci.org/Korni22/packer-linux.svg?branch=travis](Travis CI build status)
+[![Build Status](https://travis-ci.org/Korni22/packer-linux.svg?branch=travis)](https://travis-ci.org/Korni22/packer-linux)
 
 These are scripts that can be used to automatically create images for an OpenStack Environment.
 
