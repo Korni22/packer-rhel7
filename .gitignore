@@ -1,7 +1,7 @@
 *.log
 *.iso
-*/identity_build
-*/identity_build.pub
+identity_build
+identity_build.pub
 .vagrant
 Vagrantfile
 .gitigore
