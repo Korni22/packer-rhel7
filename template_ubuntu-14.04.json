@@ -55,7 +55,6 @@
         "type": "shell",
         "scripts": [
         "scripts/cloud-init_ubuntu.sh",
-        "scripts/bootlogs_ubuntu.sh",
         "scripts/cleanup_ubuntu.sh"
         ]
     }
