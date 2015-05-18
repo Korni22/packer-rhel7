@@ -5,7 +5,6 @@
 [![forthebadge](http://forthebadge.com/images/badges/compatibility-betamax.svg)](http://forthebadge.com)
 [![forthebadge](http://forthebadge.com/images/badges/as-seen-on-tv.svg)](http://forthebadge.com)
 <br>[![Build Status](https://travis-ci.org/Korni22/packer-linux.svg?branch=master)](https://travis-ci.org/Korni22/packer-linux)
-[![Join the chat at https://gitter.im/Korni22/packer-linux](https://badges.gitter.im/Join%20Chat.svg)]
 
 These are scripts that can be used to automatically create images for an OpenStack Environment.
 
