@@ -59,7 +59,7 @@ build(){
 pack(){
 	image=`ls -Art output_$dist/ | tail -n1`
 	if [[ $image =~ \.raw$ ]]
-		then	
+		then
 			echo -e "${green}started packing...${NC}"
 			pv -tpreb output_$dist/$image | pigz > output_$dist/$image.gz && \
 			echo -e "${green}Image successfully compressed!${NC}" && \
@@ -75,12 +75,12 @@ pack(){
 upload(){
 	image=`ls -Art output_$dist/ | tail -n1`
 	if [[ $image =~ \.raw$ ]]
-		then	
+		then
 			echo -e "${yellow}You happen to have forgotten to pack the image first!${NC}"
 	elif [[ $image =~ \.gz$ ]]
 		then
 			echo -e "${green}uploading started...${NC}" && \
-			lftp -c "open -u root sftp://localhost:2222; put -O /var/tmp/image output_$dist/$image" && \
+			lftp -c "open -u root,thisisnottheactualpassword sftp://localhost:2222; put -O /var/tmp/image output_$dist/$image" && \
 			echo -e "${green}upload finished!${NC}"
 	fi
 }
@@ -151,7 +151,7 @@ elif [[ $1 == "test" ]]
 elif [[ -n "$1" ]]
 	then
 		help
-elif [[ -z "$1" ]] 
+elif [[ -z "$1" ]]
 	then
 		help
 fi
