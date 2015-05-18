@@ -5,6 +5,7 @@
 [![forthebadge](http://forthebadge.com/images/badges/compatibility-betamax.svg)](http://forthebadge.com)
 [![forthebadge](http://forthebadge.com/images/badges/as-seen-on-tv.svg)](http://forthebadge.com)
 <br>[![Build Status](https://travis-ci.org/Korni22/packer-linux.svg?branch=master)](https://travis-ci.org/Korni22/packer-linux)
+[![Join the chat at https://gitter.im/Korni22/packer-linux](https://badges.gitter.im/Join%20Chat.svg)]
 
 These are scripts that can be used to automatically create images for an OpenStack Environment.
 
@@ -12,7 +13,7 @@ Currently, only Scripts for CentOS 7 are considered stable, 6 is WIP, other Linu
 
 ## Usage:
 
-[![Join the chat at https://gitter.im/Korni22/packer-linux](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Korni22/packer-linux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+(https://gitter.im/Korni22/packer-linux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 `bash build.sh $dist $task`
 
 Current options are:
