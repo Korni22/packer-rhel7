@@ -11,6 +11,8 @@ These are scripts that can be used to automatically create images for an OpenSta
 Currently, only Scripts for CentOS 7 are considered stable, 6 is WIP, other Linux distributions will be added later.
 
 ## Usage:
+
+[![Join the chat at https://gitter.im/Korni22/packer-linux](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Korni22/packer-linux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 `bash build.sh $dist $task`
 
 Current options are:
