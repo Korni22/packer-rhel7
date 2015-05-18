@@ -8,3 +8,4 @@ Vagrantfile
 *_sgi.json
 *_sgi.sh
 *_sgi.cfg
+*.qcow2
