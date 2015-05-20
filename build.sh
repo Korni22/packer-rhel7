@@ -51,9 +51,9 @@ noimage(){
 }
 
 build(){
-	echo -e "${yellow}Started building...${NC}"
+	echo -e "${green}Started building...${NC}"
 	packer-io build -force template_$dist.json && \
-	echo -e "${yellow}Building finished!${NC}"
+	echo -e "${green}Building finished!${NC}"
 }
 
 pack(){
