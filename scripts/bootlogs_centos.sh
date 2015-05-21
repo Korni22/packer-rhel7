@@ -1,5 +1,3 @@
-#sleep 2h
-
 cat > /etc/default/grub <<EOF
 GRUB_TIMEOUT=5
 GRUB_DISTRIBUTOR="\$(sed 's, release .*\$,,g' /etc/system-release)"
