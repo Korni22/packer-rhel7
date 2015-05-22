@@ -10,7 +10,7 @@
         "format": "raw",
         "name": "ubuntu-14.04_{{isotime \"20060102\"}}",
         "accelerator": "kvm",
-        "headless": false,
+        "headless": true,
         "http_directory": "http",
         "boot_wait": "3s",
         "ssh_username": "root",
