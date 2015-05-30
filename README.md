@@ -12,7 +12,6 @@ Currently, only Scripts for CentOS 7 are considered stable, 6 is WIP, other Linu
 
 ## Usage:
 
-(https://gitter.im/Korni22/packer-linux?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 `bash build.sh $dist $task`
 
 Current options are:
