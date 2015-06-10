@@ -1,9 +1,5 @@
 *.log
 *.iso
-identity_build
-identity_build.pub
-.vagrant
-Vagrantfile
 .gitigore
 *_sgi.json
 *_sgi.sh
