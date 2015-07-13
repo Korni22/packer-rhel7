@@ -1,7 +1,6 @@
 *.log
 *.iso
 .gitigore
-*_sgi.json
-*_sgi.sh
-*_sgi.cfg
-*.qcow2
+.env
+*.vmdk
+*.gz
