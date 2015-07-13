@@ -1,15 +1,15 @@
 {
   "builders": [
   {
-    "type": "qemu",
+    "type": "virtualbox-iso",
+    "guest_os_type":"Ubuntu_64",
     "iso_checksum": "111379a06402e1e445c6aeee9401d031",
     "iso_checksum_type": "md5",
     "iso_url": "http://mirror.informatik.hs-fulda.de/pub/linux/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1503.iso",
     "output_directory": "output_centos",
     "disk_size": 2048,
-    "format": "raw",
+    "format": "ovf",
     "name": "centos_{{isotime \"20060102\"}}",
-    "accelerator": "kvm",
     "headless": true,
     "http_directory": "http",
     "boot_wait": "5s",
@@ -20,12 +20,6 @@
     "shutdown_command": "shutdown -h now",
     "boot_command": [
     "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos.cfg<enter><wait>"
-    ],
-    "qemuargs": [
-    [
-    "-m",
-    "1024"
-    ]
     ]
   }
   ],

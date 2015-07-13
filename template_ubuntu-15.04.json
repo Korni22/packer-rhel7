@@ -1,15 +1,15 @@
 {
     "builders": [
     {
-        "type": "qemu",
+        "type": "virtualbox-iso",
+        "guest_os_type":"Ubuntu_64",
         "iso_checksum": "487f4a81f22f8597503db3d51a1b502e",
         "iso_checksum_type": "md5",
         "iso_url": "http://de.releases.ubuntu.com/15.04/ubuntu-15.04-server-amd64.iso",
         "output_directory": "output_ubuntu-15.04",
         "disk_size": 4096,
-        "format": "raw",
+        "format": "ovf",
         "name": "ubuntu-15.04_{{isotime \"20060102\"}}",
-        "accelerator": "kvm",
         "headless": true,
         "http_directory": "http",
         "boot_wait": "3s",
@@ -40,12 +40,6 @@
         " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu-15.04.cfg",
         " -- ",
         "<enter><wait>"
-        ],
-        "qemuargs": [
-        [
-        "-m",
-        "2048"
-        ]
         ]
     }
     ],

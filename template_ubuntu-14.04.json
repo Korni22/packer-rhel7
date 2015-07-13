@@ -1,15 +1,15 @@
 {
     "builders": [
     {
-        "type": "qemu",
+        "type": "virtualbox-iso",
+        "guest_os_type":"Ubuntu_64",
         "iso_checksum": "83aabd8dcf1e8f469f3c72fff2375195",
         "iso_checksum_type": "md5",
         "iso_url": "http://de.releases.ubuntu.com/14.04.2/ubuntu-14.04.2-server-amd64.iso",
         "output_directory": "output_ubuntu-14.04",
         "disk_size": 4096,
-        "format": "raw",
+        "format": "ovf",
         "name": "ubuntu-14.04_{{isotime \"20060102\"}}",
-        "accelerator": "kvm",
         "headless": true,
         "http_directory": "http",
         "boot_wait": "3s",
@@ -41,12 +41,6 @@
         " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu-14.04.cfg",
         " -- ",
         "<enter><wait>"
-        ],
-        "qemuargs": [
-        [
-        "-m",
-        "2048"
-        ]
         ]
     }
     ],
