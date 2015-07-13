@@ -18,6 +18,8 @@ dist=""
 image=""
 dist_glance=""
 
+source ./.env
+
 help(){
 	echo "Available arguments:"
 	echo -e "- \"build\" starts a new build using packer-io${NC}"
@@ -52,13 +54,13 @@ noimage(){
 
 build(){
 	echo -e "${green}Started building...${NC}"
-	packer-io build -force template_$dist.json && \
+	packer build -force template_$dist.json && \
 	echo -e "${green}Building finished!${NC}"
 }
 
 pack(){
 	image=`ls -Art output_$dist/ | tail -n1`
-	if [[ $image =~ \.raw$ ]]
+	if [[ $image =~ \.vmdk$ ]]
 		then
 			echo -e "${green}started packing...${NC}"
 			pv -tpreb output_$dist/$image | pigz > output_$dist/$image.gz && \
@@ -74,13 +76,13 @@ pack(){
 
 upload(){
 	image=`ls -Art output_$dist/ | tail -n1`
-	if [[ $image =~ \.raw$ ]]
+	if [[ $image =~ \.vmdk$ ]]
 		then
 			echo -e "${yellow}You happen to have forgotten to pack the image first!${NC}"
 	elif [[ $image =~ \.gz$ ]]
 		then
 			echo -e "${green}uploading started...${NC}" && \
-			lftp -c "open -u root,thisisnottheactualpassword sftp://localhost:2222; put -O /var/tmp/image output_$dist/$image" && \
+			lftp -c "open -u $targetuser,$targetpw sftp://$targetip:$targetport; put -O /var/tmp/image output_$dist/$image" && \
 			echo -e "${green}upload finished!${NC}"
 	fi
 }
