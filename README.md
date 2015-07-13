@@ -10,6 +10,10 @@ These are scripts that can be used to automatically create images for an OpenSta
 
 Currently, only Scripts for CentOS 7 are considered stable, 6 is WIP, other Linux distributions might be added later.
 
+## Heads Up:
+
+Create a .env file that contains your $targetip, $targetport, $targetuser and $targetpw
+
 ## Usage:
 
 `bash build.sh $dist $task`
