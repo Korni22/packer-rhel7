@@ -1,6 +1,5 @@
 *.log
-*.iso
-.gitigore
 .env
-*.vmdk
-*.gz
+.gitigore
+output_*/*
+packer_cache/*
